@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/themes.dart';
-import 'package:taskati/Features/splash_screen.dart';
+import 'package:taskati/Features/Splash%20Screen/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
