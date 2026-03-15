@@ -33,6 +33,32 @@ class AppThemes {
       onSurface: AppColors.blackColor,
     ),
 
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyles.caption.copyWith(color: AppColors.greyColor),
+      fillColor: AppColors.backgroundColor,
+      filled: true,
+      // suffixIcon: suffixicon,
+      // border: OutlineInputBorder(
+      //   borderRadius: BorderRadius.circular(20),
+      //   borderSide: BorderSide.none,
+      // ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.backgroundColor),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.backgroundColor),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColors.backgroundColor),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
     // inputDecorationTheme: InputDecorationTheme(
     //   fillColor: AppColors.accentColor,
     //   filled: true,

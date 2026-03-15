@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
+import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
+import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
@@ -10,10 +13,11 @@ class CompleteProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(
           "Complete Your Profile",
-          style: TextStyles.title.copyWith(fontSize: 18 ,),
+          style: TextStyles.title.copyWith(fontSize: 18),
         ),
       ),
       body: Center(
@@ -43,20 +47,51 @@ class CompleteProfileScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-
                   Positioned(
                     bottom: 10,
                     right: 10,
                     child: Container(
-                          padding: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: AppColors.backgroundColor,
-                        shape: BoxShape.circle
+                        shape: BoxShape.circle,
                       ),
-                      child: SvgPicture.asset(AppImages.deletedIconSvg)),
+                      child: SvgPicture.asset(AppImages.deletedIconSvg),
+                    ),
                   ),
                 ],
               ),
+
+              SizedBox(height: 20),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: SecondaryElevatedButton(title: "From Camera"),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: SecondaryElevatedButton(title: "From Gallery"),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 50),
+
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Your Name',
+                  style: TextStyles.body.copyWith(
+                    fontSize: 12,
+                    color: AppColors.greyColor,
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              customtextformdield(),
+              Spacer(),
+              PrimaryElevatedBotton(title: "Let's Start !"),
             ],
           ),
         ),
