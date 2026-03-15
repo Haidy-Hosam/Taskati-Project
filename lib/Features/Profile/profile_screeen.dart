@@ -3,14 +3,12 @@ import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
 import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
-import 'package:taskati/Core/Functions/navigation.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taskati/Features/Profile/profile_screeen.dart';
 
-class CompleteProfileScreen extends StatelessWidget {
-  const CompleteProfileScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +16,7 @@ class CompleteProfileScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: Text(
-          "Complete Your Profile",
+          "Profile",
           style: TextStyles.title.copyWith(fontSize: 18),
         ),
       ),
@@ -93,9 +91,7 @@ class CompleteProfileScreen extends StatelessWidget {
               SizedBox(height: 10),
               customtextformdield(),
               Spacer(),
-              PrimaryElevatedBotton(title: "Let's Start !" , onPressed: (){
-                pushReplacement(context ,ProfileScreen());
-              }),
+              PrimaryElevatedBotton(title: "Save" ,onPressed: (){},),
             ],
           ),
         ),
