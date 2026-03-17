@@ -7,7 +7,7 @@ import 'package:taskati/Core/Styles/text_styles.dart';
 class AppThemes {
   static ThemeData get light => ThemeData(
     fontFamily: AppFonts.lexendDeca,
-    scaffoldBackgroundColor: AppColors.backgroundColor,
+    scaffoldBackgroundColor: Colors.transparent,
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(0),
@@ -19,7 +19,7 @@ class AppThemes {
     dividerColor: Colors.transparent,
     dividerTheme: DividerThemeData(color: AppColors.blackColor),
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Colors.transparent,
       centerTitle: true,
       surfaceTintColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.dark,

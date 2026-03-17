@@ -99,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
         child: PrimaryElevatedBotton(
-          title: "Svae",
+          title: "Save",
           onPressed: () {
             pushReplacement(context, ProfileScreen());
           },
