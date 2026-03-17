@@ -98,7 +98,7 @@ class CompleteProfileScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
         child: PrimaryElevatedBotton(
           title: "Let's Start !",
           onPressed: () {
