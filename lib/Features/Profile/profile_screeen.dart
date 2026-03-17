@@ -12,7 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -43,14 +43,11 @@ class ProfileScreen extends StatelessWidget {
                 20.h,
                 Stack(
                   children: [
-                    ClipOval(
-                      child: Image.asset(
-                        AppImages.personalimage,
-                        width: 180,
-                        height: 180,
-                        fit: BoxFit.cover,
-                      ),
+                    CircleAvatar(
+                      radius: 90,
+                      backgroundImage: AssetImage(AppImages.personalimage),
                     ),
+
                     Positioned(
                       bottom: 10,
                       right: 10,

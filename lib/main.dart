@@ -41,7 +41,7 @@ class MainApp extends StatelessWidget {
       },
 
       // home: const SplashScreen(),
-      home: const ProfileScreen(),
+      home: const CompleteProfileScreen(),
     );
   }
 }
