@@ -3,6 +3,7 @@ import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
 import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
+import 'package:taskati/Core/Functions/extentions.dart';
 import 'package:taskati/Core/Functions/navigation.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
@@ -17,87 +18,92 @@ class CompleteProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        toolbarHeight: 90,
         title: Text(
           "Complete Your Profile",
           style: TextStyles.title.copyWith(fontSize: 18),
         ),
       ),
       body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Profile Image',
-                  style: TextStyles.body.copyWith(
-                    fontSize: 12,
-                    color: AppColors.greyColor,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Stack(
-                children: [
-                  ClipOval(
-                    child: Image.asset(
-                      AppImages.personalimage,
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Profile Image',
+                    style: TextStyles.body.copyWith(
+                      fontSize: 12,
+                      color: AppColors.greyColor,
                     ),
                   ),
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundColor,
-                        shape: BoxShape.circle,
+                ),
+                20.h,
+                Stack(
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        AppImages.personalimage,
+                        width: 180,
+                        height: 180,
+                        fit: BoxFit.cover,
                       ),
-                      child: SvgPicture.asset(AppImages.deletedIconSvg),
+                    ),
+                    Positioned(
+                      bottom: 10,
+                      right: 10,
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppColors.backgroundColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: SvgPicture.asset(AppImages.deletedIconSvg),
+                      ),
+                    ),
+                  ],
+                ),
+
+                30.h,
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SecondaryElevatedButton(title: "From Camera"),
+                    20.w,
+                    SecondaryElevatedButton(title: "From Gallery"),
+                  ],
+                ),
+
+                50.h,
+
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Your Name',
+                    style: TextStyles.body.copyWith(
+                      fontSize: 12,
+                      color: AppColors.greyColor,
                     ),
                   ),
-                ],
-              ),
-
-              SizedBox(height: 20),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: SecondaryElevatedButton(title: "From Camera"),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: SecondaryElevatedButton(title: "From Gallery"),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 50),
-
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Your Name',
-                  style: TextStyles.body.copyWith(
-                    fontSize: 12,
-                    color: AppColors.greyColor,
-                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              customtextformdield(),
-              Spacer(),
-              PrimaryElevatedBotton(title: "Let's Start !" , onPressed: (){
-                pushReplacement(context ,ProfileScreen());
-              }),
-            ],
+                10.h,
+                customtextformdield(),
+              ],
+            ),
           ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20),
+        child: PrimaryElevatedBotton(
+          title: "Let's Start !",
+          onPressed: () {
+            pushReplacement(context, ProfileScreen());
+          },
         ),
       ),
     );

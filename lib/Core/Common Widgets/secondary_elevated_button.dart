@@ -12,7 +12,7 @@ class SecondaryElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.secondryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        minimumSize: Size(double.infinity, 50),
+        minimumSize: Size(30, 50),
       ),
 
       onPressed: () {},

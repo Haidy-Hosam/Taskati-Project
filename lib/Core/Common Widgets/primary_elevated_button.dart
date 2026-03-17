@@ -24,7 +24,7 @@ class PrimaryElevatedBotton extends StatelessWidget {
       child: Text(
         title,
         textAlign: TextAlign.center,
-        style: TextStyle(color: AppColors.backgroundColor),
+        style: TextStyle(color: AppColors.backgroundColor , fontSize: 19 ,fontWeight: FontWeight.w600),
       ),
     );
   }
