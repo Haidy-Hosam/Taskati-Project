@@ -2,8 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>We need to use gallery to upload image</key>
+	<string>NSPhotoLibraryUsageDescription</string>
+	<key>We need to use camera to upload image</key>
+	<string>NSCameraUsageDescription </string>
+
 	<key>CFBundleDisplayName</key>
 	<string>Taskati</string>
 	<key>CFBundleExecutable</key>
