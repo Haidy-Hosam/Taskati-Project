@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 
 class SecondaryElevatedButton extends StatelessWidget {
-  const SecondaryElevatedButton({super.key, required this.title});
+  const SecondaryElevatedButton({super.key, required this.title , required this.onpressed});
 
   final String title;
+  final Function onpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class SecondaryElevatedButton extends StatelessWidget {
         minimumSize: Size(30, 50),
       ),
 
-      onPressed: () {},
+      onPressed: onpressed(),
       child: Text(
         title,
         textAlign: TextAlign.center,

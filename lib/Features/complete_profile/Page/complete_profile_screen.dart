@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
 import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
@@ -73,9 +74,15 @@ class CompleteProfileScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SecondaryElevatedButton(title: "From Camera"),
+                  SecondaryElevatedButton(title: "From Camera" , onpressed: (){
+                    ImagePicker().pickImage(source: ImageSource.camera);
+
+                  }),
                   20.w,
-                  SecondaryElevatedButton(title: "From Gallery"),
+                  SecondaryElevatedButton(title: "From Gallery" , onpressed: (){
+                    ImagePicker().pickImage(source: ImageSource.gallery);
+
+                  }),
                 ],
               ),
       
