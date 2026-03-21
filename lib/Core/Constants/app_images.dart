@@ -2,6 +2,7 @@ class AppImages {
   static const String tasklogojson = 'assets/lottie/Task_Logo_Done.json';
   static const String user = 'assets/images/user.png';
   static const String background = 'assets/images/background.png';
+  static const String ca = 'assets/images/Group 10.png';
   static const String personalimage = 'assets/images/personal_image.png';
   static const String arrowDownSvg = 'assets/icons/Arrow_Down.svg';
   static const String arrowLeftSvg = 'assets/icons/Arrow_Left.svg';

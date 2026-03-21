@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/themes.dart';
+import 'package:taskati/Features/Home/Page/home_screen.dart';
 import 'package:taskati/Features/Profile/profile_screeen.dart';
 import 'package:taskati/Features/complete_profile/Page/complete_profile_screen.dart';
 
@@ -46,7 +46,7 @@ class MainApp extends StatelessWidget {
       },
 
       // home: const SplashScreen(),
-      home: const CompleteProfileScreen(),
+      home: const HomeScreen(),
     );
   }
 }

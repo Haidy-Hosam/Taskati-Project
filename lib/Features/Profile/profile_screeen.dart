@@ -12,7 +12,7 @@ import 'package:taskati/Core/Functions/navigation.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taskati/Features/Home/home_screen.dart';
+import 'package:taskati/Features/Home/Page/home_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
