@@ -6,7 +6,6 @@ import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/themes.dart';
 import 'package:taskati/Features/Profile/profile_screeen.dart';
 import 'package:taskati/Features/complete_profile/Page/complete_profile_screen.dart';
-import 'package:taskati/Features/splash_screen.dart';
 
 void main() {
   runApp(const MainApp());
