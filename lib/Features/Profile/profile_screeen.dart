@@ -11,8 +11,15 @@ import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final TextEditingController controller = TextEditingController();
 
    @override
   Widget build(BuildContext context) {
@@ -20,7 +27,12 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         toolbarHeight: 80,
-        title: Padding(
+leading: IconButton(
+  onPressed: () {
+    pop(context);
+  },
+  icon: Icon(Icons.arrow_back_ios),
+),        title: Padding(
           padding: const EdgeInsets.only(top: 10),
           child: Text(
             "Your Profile",
@@ -50,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 90,
-                    backgroundImage: AssetImage(AppImages.personalimage),
+                    backgroundImage: AssetImage(AppImages.user),
                   ),
       
                   Positioned(
@@ -98,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               10.h,
-              customtextformdield(),
+              customtextformdield(controller: controller,),
             ],
           ),
         ),

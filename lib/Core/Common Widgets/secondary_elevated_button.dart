@@ -5,7 +5,7 @@ class SecondaryElevatedButton extends StatelessWidget {
   const SecondaryElevatedButton({super.key, required this.title , required this.onpressed});
 
   final String title;
-  final Function onpressed;
+  final VoidCallback  onpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SecondaryElevatedButton extends StatelessWidget {
         minimumSize: Size(30, 50),
       ),
 
-      onPressed: onpressed(),
+      onPressed: onpressed,
       child: Text(
         title,
         textAlign: TextAlign.center,
