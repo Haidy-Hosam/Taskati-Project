@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
 import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
+import 'package:taskati/Core/Common%20Widgets/dailogs.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
 import 'package:taskati/Core/Functions/navigation.dart';
@@ -29,12 +30,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            (context);
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
+
         toolbarHeight: 80,
         title: Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -172,7 +168,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
               ),
               10.h,
-              customtextformdield(controller: controller,),
+              customtextformdield(controller: controller),
             ],
           ),
         ),
@@ -182,7 +178,18 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         child: PrimaryElevatedBotton(
           title: "Let's Start !",
           onPressed: () {
-            pushReplacement(context, ProfileScreen());
+            if (path != null && controller.text.isNotEmpty) {
+              pushTo(context, ProfileScreen());
+            } else if (path == null && controller.text.isNotEmpty) {
+              showErrorDialog(context, 'select profile image');
+            } else if (path != null && controller.text.isEmpty) {
+              showErrorDialog(context, 'Enter your name');
+            } else {
+              showErrorDialog(
+                context,
+                'select profile image and enter your name',
+              );
+            }
           },
         ),
       ),
