@@ -1,7 +1,6 @@
 # Taskati
 
-A Flutter-based task and project management application designed to help you stay organized and boost your productivity.
-
+Taskati is a modern Flutter-based task management application that helps users organize their daily tasks, manage projects efficiently, and stay productive through a clean and intuitive interface.
 ## Features
 
 * **Task Management:** Easily add, edit, and organize your tasks and projects.
@@ -9,6 +8,14 @@ A Flutter-based task and project management application designed to help you sta
 * **Onboarding Experience:** A smooth start for new users to get familiar with the app quickly.
 * **Dark Theme:** Fully supports a dark theme for a better viewing experience in low-light environments.
 * **Profile Management:** Keep track of your user profile and settings.
+
+## Tech Stack
+
+- Flutter
+- Dart
+- Material UI
+- Image Picker
+- State Management 
 
 ## Screenshots
 
@@ -47,6 +54,3 @@ A few resources to get you started if this is your first Flutter project:
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
