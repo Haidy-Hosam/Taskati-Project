@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,10 +9,11 @@ import 'package:taskati/Core/Common%20Widgets/dailogs.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
 import 'package:taskati/Core/Functions/navigation.dart';
+import 'package:taskati/Core/Services/shared_pref.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taskati/Features/Profile/profile_screeen.dart';
+import 'package:taskati/Features/Home/Page/home_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});
@@ -25,12 +25,12 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   String? path;
   final TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-
         toolbarHeight: 80,
         title: Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -177,9 +177,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
         child: PrimaryElevatedBotton(
           title: "Let's Start !",
-          onPressed: () {
+          onPressed: () async {
             if (path != null && controller.text.isNotEmpty) {
-              pushTo(context, ProfileScreen());
+              await SharedPref.setUserData(controller.text, path!);
+              await SharedPref.setBool(SharedPref.isUploadedKey, true);
+              pushReplacement(context, HomeScreen());
             } else if (path == null && controller.text.isNotEmpty) {
               showErrorDialog(context, 'select profile image');
             } else if (path != null && controller.text.isEmpty) {

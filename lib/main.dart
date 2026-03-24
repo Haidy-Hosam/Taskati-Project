@@ -1,13 +1,18 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
+import 'package:taskati/Core/Services/shared_pref.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/themes.dart';
 import 'package:taskati/Features/Home/Page/home_screen.dart';
 import 'package:taskati/Features/Profile/profile_screeen.dart';
+import 'package:taskati/Features/Splash/splash_screen.dart';
 import 'package:taskati/Features/complete_profile/Page/complete_profile_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await SharedPref.init();
   runApp(const MainApp());
 }
 
@@ -37,12 +42,10 @@ class MainApp extends StatelessWidget {
                 height: double.infinity,
                 fit: BoxFit.cover,
               ),
-              child ?? Container()
+              child ?? Container(),
             ],
-            
           ),
         );
-      
       },
 
       // home: const SplashScreen(),

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskati/Core/Common Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common Widgets/primary_elevated_button.dart';
 import 'package:taskati/Core/Common Widgets/secondary_elevated_button.dart';
@@ -87,7 +88,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               title: const Text('Delete Image'),
                               content: const Text(
-                                  'Are you sure you want to delete?'),
+                                'Are you sure you want to delete?',
+                              ),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -117,8 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: AppColors.backgroundColor,
                             shape: BoxShape.circle,
                           ),
-                          child: SvgPicture.asset(
-                              AppImages.deletedIconSvg),
+                          child: SvgPicture.asset(AppImages.deletedIconSvg),
                         ),
                       ),
                     ),
@@ -183,8 +184,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         padding: EdgeInsets.fromLTRB(20, 0, 20, 30),
         child: PrimaryElevatedBotton(
           title: "Save",
-          onPressed: () {
+          onPressed: () async {
             if (path != null && controller.text.isNotEmpty) {
+              final SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              prefs.setString('image', path!);
+              prefs.setString('name', controller.text);
               pushReplacement(context, HomeScreen());
             } else if (path == null && controller.text.isNotEmpty) {
               showErrorDialog(context, 'select profile image');
