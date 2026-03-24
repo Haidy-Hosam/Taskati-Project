@@ -1,3 +1,4 @@
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // final TabController tabController = TabController(length: 3, vsync: vsync);
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -105,32 +106,75 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                   20.h,
-                  TabBar(
-                    dividerColor: Colors.transparent,
-                    indicatorColor: AppColors.primaryColor,
-                    indicatorSize: TabBarIndicatorSize.tab,
-              
+                  ButtonsTabBar(
+                    onTap: (index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    backgroundColor: AppColors.primaryColor,
+                    unselectedBackgroundColor: AppColors.accentColor,
+                    borderWidth: 3,
+
                     labelStyle: TextStyles.caption.copyWith(
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       fontWeight: FontWeight.bold,
-                      color: AppColors.backgroundColor,
                     ),
-              
-                    indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                    unselectedLabelStyle: TextStyles.caption.copyWith(
                       color: AppColors.primaryColor,
                     ),
-              
-                    indicatorPadding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 4,
+
+                    contentCenter: true,
+                    width: (MediaQuery.sizeOf(context).width - 40) / 3,
+                    radius: 15,
+                    buttonMargin: EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 3,
                     ),
-              
-                    unselectedLabelStyle: TextStyles.caption,
+                    // Add your tabs here
                     tabs: [
-                      Tab(child: Text('All', style: TextStyles.caption)),
-                      Tab(child: Text('In Progress', style: TextStyles.caption)),
-                      Tab(child: Text('Completed', style: TextStyles.caption)),
+                      Tab(
+                        child: Text(
+                          'All',
+                          style: TextStyles.caption.copyWith(
+                            color: currentIndex == 0
+                                ? Colors.white
+                                : AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: Text(
+                          'In Progress',
+                          style: TextStyles.caption.copyWith(
+                            color: currentIndex == 1
+                                ? Colors.white
+                                : AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: Text(
+                          'Completed',
+                          style: TextStyles.caption.copyWith(
+                            color: currentIndex == 2
+                                ? Colors.white
+                                : AppColors.primaryColor,
+                          ),
+                        ),
+                      ),
                     ],
+                  ),
+                  SizedBox(
+                    height: 300,
+                    child: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        Center(child: Text('all')),
+                        Center(child: Text('Progress')),
+                        Center(child: Text('Completed')),
+                      ],
+                    ),
                   ),
                 ],
               ),
