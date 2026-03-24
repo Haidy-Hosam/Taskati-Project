@@ -4,6 +4,7 @@ import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Services/shared_pref.dart';
 import 'package:taskati/Core/Styles/colors.dart';
 import 'package:taskati/Core/Styles/themes.dart';
+import 'package:taskati/Features/Add%20Task/Page/add_task.dart';
 import 'package:taskati/Features/Home/Page/home_screen.dart';
 import 'package:taskati/Features/Profile/profile_screeen.dart';
 import 'package:taskati/Features/Splash/splash_screen.dart';
@@ -49,7 +50,7 @@ class MainApp extends StatelessWidget {
       },
 
       // home: const SplashScreen(),
-      home: const HomeScreen(),
+      home: const AddTaskPage(),
     );
   }
 }
