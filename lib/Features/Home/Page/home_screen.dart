@@ -3,7 +3,9 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
+import 'package:taskati/Core/Functions/navigation.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
+import 'package:taskati/Features/Add%20Task/Page/add_task.dart';
 import 'package:taskati/Features/Home/Widgets/home_header.dart';
 import 'package:taskati/core/styles/colors.dart';
 
@@ -182,6 +184,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          pushTo(context, AddTaskPage());
+        },
+        backgroundColor: AppColors.primaryColor,
+        elevation: 8,
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add, size: 28, color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

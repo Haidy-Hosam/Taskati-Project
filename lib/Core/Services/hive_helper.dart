@@ -1,27 +1,49 @@
 import 'package:hive_ce/hive.dart';
+import 'package:hive_ce_flutter/adapters.dart';
+import 'package:taskati/Core/Model/task_model.dart';
+import 'package:taskati/hive/hive_registrar.g.dart';
 
 abstract class HiveHelper {
+  // boxes
   static late Box userBox;
+  static late Box<TaskModel> taskBox;
+
+  // box keys
   static String userBoxKey = 'userBox';
+  static String taskBoxKey = 'taskBox';
+
+  // keys
   static String nameKey = 'name';
   static String imageKey = 'image';
   static String isUploadedKey = 'isUploaded';
+  static String isDarkModeKey = 'isDarkMode';
 
 
   static Future<void> initt() async {
+    await Hive.initFlutter();
+    Hive.registerAdapters();
     userBox = await Hive.openBox(userBoxKey);
+    taskBox = await Hive.openBox<TaskModel>(taskBoxKey);
   }
 
-    static Future<void> setKeyValue(String name, String image) async {
-    await cashdata(nameKey , name);
-    await cashdata(imageKey, image);
+  static Future<void> setUserData(String name, String image) async {
+    await cacheData(nameKey, name);
+    await cacheData(imageKey, image);
   }
-  static Future<void> cashdata(String key, dynamic value) async {
+
+  static Future<void> cacheData(String key, dynamic value) async {
     await userBox.put(key, value);
   }
 
-  static dynamic getData(String key)  {
-     userBox.get(key);
+  static dynamic getData(String key) {
+    return userBox.get(key);
   }
 
+  static Future<void> cacheTask(String key, TaskModel value) async {
+    await taskBox.put(key, value);
+  }
+
+  static TaskModel? getTask(String key) {
+    return taskBox.get(key);
+  }
 }
