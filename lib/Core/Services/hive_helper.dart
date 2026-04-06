@@ -21,7 +21,7 @@ abstract class HiveHelper {
 
   static Future<void> initt() async {
     await Hive.initFlutter();
-    Hive.registerAdapters();
+    Hive.registerAdapters();  // TaskMode استخدم المترجم ده لما تشوف
     userBox = await Hive.openBox(userBoxKey);
     taskBox = await Hive.openBox<TaskModel>(taskBoxKey);
   }

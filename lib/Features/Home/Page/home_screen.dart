@@ -1,9 +1,13 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
 import 'package:taskati/Core/Functions/navigation.dart';
+import 'package:taskati/Core/Model/task_model.dart';
+import 'package:taskati/Core/Services/hive_helper.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:taskati/Features/Add%20Task/Page/add_task.dart';
 import 'package:taskati/Features/Home/Widgets/home_header.dart';
@@ -172,9 +176,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TabBarView(
                       physics: NeverScrollableScrollPhysics(),
                       children: [
-                        Center(child: Text('all')),
-                        Center(child: Text('Progress')),
-                        Center(child: Text('Completed')),
+                        // Center(child: Text('all')),
+                        // Center(child: Text('Progress')),
+                        // Center(child: Text('Completed')),
+                        TasksBuilder(),
+                        TasksBuilder(),
+                        TasksBuilder(),
                       ],
                     ),
                   ),
@@ -194,6 +201,57 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(Icons.add, size: 28, color: Colors.white),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+    );
+  }
+}
+
+class TasksBuilder extends StatefulWidget {
+  const TasksBuilder({super.key});
+
+  @override
+  State<TasksBuilder> createState() => _TasksBuilderState();
+}
+
+class _TasksBuilderState extends State<TasksBuilder> {
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: HiveHelper.taskBox.listenable(),
+      builder: (context, Box<TaskModel> box, _) {
+        final tasks = box.values.toList();
+
+        if (tasks.isEmpty) {
+          return Center(
+            child: Text(
+              'No tasks yet',
+              style: TextStyles.body.copyWith(color: AppColors.greyColor),
+            ),
+          );
+        }
+
+        return ListView.separated(
+          itemCount: tasks.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return Gap(12);
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 80,
+              decoration: BoxDecoration(
+                color: AppColors.accentColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(tasks[index].title),
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

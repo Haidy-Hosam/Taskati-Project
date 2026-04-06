@@ -13,8 +13,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await SharedPref.init();
-  runApp(const MainApp());
   await HiveHelper.initt();
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {

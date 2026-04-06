@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:taskati/Core/Model/task_model.dart';
+import 'package:taskati/Core/Services/hive_helper.dart';
 import 'package:taskati/Features/Add%20Task/widgets/task_date_time_card.dart';
 import 'package:taskati/core/constants/app_images.dart';
 import 'package:taskati/core/styles/colors.dart';
@@ -155,10 +157,40 @@ class _AddTaskPageState extends State<AddTaskPage> {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 30),
         child: PrimaryElevatedBotton(
           title: "Add Task",
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Task added successfully!')),
-            );
+          onPressed: () async {
+            if (titleController.text.trim().isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Please enter a task title')),
+              );
+              return;
+            }
+
+            try {
+              final taskId = DateTime.now().toIso8601String();
+              await HiveHelper.cacheTask(
+                taskId,
+                TaskModel(
+                  id: taskId,
+                  title: titleController.text.trim(),
+                  description: descriptionController.text.trim(),
+                  date: _date,
+                  startTime: _startTime,
+                  endTime: _endTime,
+                  isCompleted: false,
+                ),
+              );
+
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Task added successfully!')),
+              );
+              Navigator.pop(context, true);
+            } catch (error) {
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Failed to add task: $error')),
+              );
+            }
           },
         ),
       ),
