@@ -10,7 +10,8 @@ import 'package:taskati/Core/Services/hive_helper.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 import 'package:taskati/Features/Add%20Task/Page/add_task.dart';
 import 'package:taskati/Features/Home/Widgets/home_header.dart';
-import 'package:taskati/Features/Home/Widgets/tasks_builder.dart';
+import 'package:taskati/Features/Home/Widgets/tasks/tasks_builder.dart';
+import 'package:taskati/Features/Home/Widgets/today__progress.dart';
 import 'package:taskati/core/styles/colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,65 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   HomeHeader(),
                   30.h,
-                  Container(
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                // 'Tue, 17 Feb',
-                                DateFormat.MMMEd().format(DateTime.now()),
-                                style: TextStyles.body.copyWith(
-                                  color: AppColors.backgroundColor,
-                                ),
-                              ),
-                              20.h,
-                              Text(
-                                'Your today’s task almost\nalmost',
-                                style: TextStyles.body.copyWith(
-                                  color: AppColors.backgroundColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          50.w,
-                          // Image.asset(AppImages.ca)
-                          Stack(
-                            alignment: AlignmentGeometry.center,
-                            children: [
-                              CircularProgressIndicator(
-                                color: AppColors.backgroundColor,
-                                backgroundColor: AppColors.lightgreyColor,
-                                strokeWidth: 9,
-                                strokeAlign: 2,
-                                strokeCap: StrokeCap.round,
-                                value: .7,
-                                constraints: BoxConstraints(
-                                  minHeight: 70,
-                                  minWidth: 70,
-                                  maxHeight: 70,
-                                  maxWidth: 70,
-                                ),
-                              ),
-                              Text(
-                                '70%',
-                                style: TextStyles.body.copyWith(
-                                  color: AppColors.backgroundColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  Today_Progress(),
                   25.h,
                   DatePicker(
                     DateTime(DateTime.now().year, 1, 1),
