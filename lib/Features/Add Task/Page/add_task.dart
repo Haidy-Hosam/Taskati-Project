@@ -9,14 +9,14 @@ import 'package:taskati/core/styles/text_styles.dart';
 import 'package:taskati/Core/Common%20Widgets/customtextformdield.dart';
 import 'package:taskati/Core/Common%20Widgets/primary_elevated_button.dart';
 
-class AddTaskPage extends StatefulWidget {
-  const AddTaskPage({super.key});
-
+class AddEditTaskPage extends StatefulWidget {
+  const AddEditTaskPage({super.key, this.task});
+  final TaskModel? task;
   @override
-  State<AddTaskPage> createState() => _AddTaskPageState();
+  State<AddEditTaskPage> createState() => _AddEditTaskPageState();
 }
 
-class _AddTaskPageState extends State<AddTaskPage> {
+class _AddEditTaskPageState extends State<AddEditTaskPage> {
   late TextEditingController titleController;
   late TextEditingController descriptionController;
 
@@ -27,8 +27,18 @@ class _AddTaskPageState extends State<AddTaskPage> {
   @override
   void initState() {
     super.initState();
+
     titleController = TextEditingController();
     descriptionController = TextEditingController();
+
+    if (widget.task != null) {
+      titleController.text = widget.task!.title;
+      descriptionController.text = widget.task!.description;
+
+      _date = widget.task!.date;
+      _startTime = widget.task!.startTime;
+      _endTime = widget.task!.endTime;
+    }
   }
 
   @override
@@ -102,10 +112,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
             ),
             const SizedBox(height: 8),
-            customtextformdield(
-              controller: titleController,
-              maxLines: 1,
-            ),
+            customtextformdield(controller: titleController, maxLines: 1),
 
             const SizedBox(height: 20),
 
@@ -117,9 +124,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
             ),
             const SizedBox(height: 8),
-            customtextformdield(
-              controller: descriptionController,
-            ),
+            customtextformdield(controller: descriptionController),
 
             const SizedBox(height: 20),
 
@@ -166,7 +171,8 @@ class _AddTaskPageState extends State<AddTaskPage> {
             }
 
             try {
-              final taskId = DateTime.now().toIso8601String();
+              final taskId =
+                  widget.task?.id ?? DateTime.now().toIso8601String();
               await HiveHelper.cacheTask(
                 taskId,
                 TaskModel(
@@ -182,7 +188,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
               if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Task added successfully!')),
+                SnackBar(
+                  content: Text(
+                    widget.task != null
+                        ? 'Task updated successfully !'
+                        : 'Task added successfully',
+                  ),
+                ),
               );
               Navigator.pop(context, true);
             } catch (error) {

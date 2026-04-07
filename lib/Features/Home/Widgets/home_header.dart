@@ -31,13 +31,23 @@ class _HomeHeaderState extends State<HomeHeader> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
-          radius: 30,
-          // backgroundImage: AppImages.personalimage,
-          // backgroundImage:  File(path);
-          backgroundImage: path.isNotEmpty
-              ? FileImage(File(path))
-              : AppImages.user as ImageProvider,
+        ClipOval(
+          child: path.isNotEmpty
+              ? Image.file(
+                  File(path),
+                  fit: BoxFit.cover,
+                  width: 60,
+                  height: 60,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      AppImages.user,
+                      fit: BoxFit.cover,
+                      width: 60,
+                      height: 60,
+                    );
+                  },
+                )
+              : Image.asset(AppImages.user, height: 50),
         ),
         12.w,
         Column(
