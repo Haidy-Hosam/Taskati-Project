@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
+import 'package:taskati/Core/Services/hive_helper.dart';
 import 'package:taskati/Core/Services/shared_pref.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
 
@@ -15,6 +16,8 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   String name = '';
   String path = '';
+  bool value = HiveHelper.getData(HiveHelper.isDarkModeKey) == true;
+
   @override
   void initState() {
     super.initState();
@@ -50,24 +53,35 @@ class _HomeHeaderState extends State<HomeHeader> {
               : Image.asset(AppImages.user, height: 50),
         ),
         12.w,
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hello ,',
-              style: TextStyles.title.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hello ,',
+                style: TextStyles.title.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
-            Text(
-              name,
-              style: TextStyles.body.copyWith(
-                fontSize: 19,
-                fontWeight: FontWeight.w600,
+              Text(
+                name,
+                style: TextStyles.body.copyWith(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            setState(() {
+              value = !value;
+              HiveHelper.cacheData(HiveHelper.isDarkModeKey, value);
+            });
+          },
+          icon: Icon(value ? Icons.dark_mode : Icons.light_mode),
         ),
       ],
     );

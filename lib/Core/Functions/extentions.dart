@@ -5,10 +5,15 @@ extension HeightSized on num {
     return SizedBox(height: toDouble());
   }
 }
-extension widthSized on num {
+extension WidthSized on num {
   SizedBox get w {
     return SizedBox(width: toDouble());
   }
+}
+
+extension ThemeExt on BuildContext {
+  ThemeData get theme => Theme.of(this);
+  Color get cardColor => theme.cardColor;
 }
 
 // extension Push on BuildContext {
