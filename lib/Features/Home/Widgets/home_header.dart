@@ -1,10 +1,13 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:taskati/Core/Constants/app_images.dart';
 import 'package:taskati/Core/Functions/extentions.dart';
 import 'package:taskati/Core/Services/hive_helper.dart';
 import 'package:taskati/Core/Services/shared_pref.dart';
 import 'package:taskati/Core/Styles/text_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskati/Core/presentation/cubit/theme_cubit.dart';
+
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -76,10 +79,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         ),
         IconButton(
           onPressed: () {
-            setState(() {
-              value = !value;
-              HiveHelper.cacheData(HiveHelper.isDarkModeKey, value);
-            });
+            context.read<ThemeCubit>().updateTheme();
           },
           icon: Icon(value ? Icons.dark_mode : Icons.light_mode),
         ),
